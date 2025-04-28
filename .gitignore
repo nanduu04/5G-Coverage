@@ -1,0 +1,17 @@
+node_modules
+.env
+
+# Environment variables
+.env
+
+# Configuration files
+config.js
+config.local.js
+
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+
