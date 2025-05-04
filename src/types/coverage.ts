@@ -1,15 +1,16 @@
 export interface CoveragePoint {
-  type: string;
+  type: 'Feature';
   properties: {
     operator: string;
     city_name: string;
     status: string;
     country?: string;
     phone_type?: string;
+    technology?: string;
   };
   geometry: {
-    type: string;
-    coordinates: [string, string];
+    type: 'Point';
+    coordinates: [number, number];
   };
 }
 

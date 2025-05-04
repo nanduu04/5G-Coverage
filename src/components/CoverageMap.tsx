@@ -11,7 +11,7 @@ interface CoveragePoint {
   };
   geometry: {
     type: string;
-    coordinates: [string, string];
+    coordinates: [number, number];
   };
 }
 
@@ -140,8 +140,8 @@ const CoverageMap: React.FC<CoverageMapProps> = ({ data }) => {
 
     return sampledData.map(point => ({
       location: new google.maps.LatLng(
-        parseFloat(point.geometry.coordinates[1]),
-        parseFloat(point.geometry.coordinates[0])
+        point.geometry.coordinates[1],
+        point.geometry.coordinates[0]
       ),
       weight: 1
     }));
@@ -163,8 +163,8 @@ const CoverageMap: React.FC<CoverageMapProps> = ({ data }) => {
     const visible = filteredPoints
       .filter((_, index) => Math.random() < sampleRate)
       .filter(point => {
-        const lat = parseFloat(point.geometry.coordinates[1]);
-        const lng = parseFloat(point.geometry.coordinates[0]);
+        const lat = point.geometry.coordinates[1];
+        const lng = point.geometry.coordinates[0];
         return mapBounds.contains({ lat, lng });
       });
 
@@ -327,8 +327,8 @@ const CoverageMap: React.FC<CoverageMapProps> = ({ data }) => {
                     <Marker
                       key={index}
                       position={{
-                        lat: parseFloat(point.geometry.coordinates[1]),
-                        lng: parseFloat(point.geometry.coordinates[0])
+                        lat: point.geometry.coordinates[1],
+                        lng: point.geometry.coordinates[0]
                       }}
                       onClick={() => setSelectedPoint(point)}
                       clusterer={clusterer}
@@ -342,8 +342,8 @@ const CoverageMap: React.FC<CoverageMapProps> = ({ data }) => {
           {selectedPoint && (
             <InfoWindow
               position={{
-                lat: parseFloat(selectedPoint.geometry.coordinates[1]),
-                lng: parseFloat(selectedPoint.geometry.coordinates[0])
+                lat: selectedPoint.geometry.coordinates[1],
+                lng: selectedPoint.geometry.coordinates[0]
               }}
               onCloseClick={() => setSelectedPoint(null)}
             >

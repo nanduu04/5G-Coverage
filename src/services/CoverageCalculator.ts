@@ -27,7 +27,7 @@ export class CoverageCalculator {
     // Create a grid-based spatial index
     this.points.forEach(point => {
       const [lng, lat] = point.geometry.coordinates;
-      const gridKey = this.getGridKey(parseFloat(lat), parseFloat(lng));
+      const gridKey = this.getGridKey(lat, lng);
       
       if (!this.spatialIndex.has(gridKey)) {
         this.spatialIndex.set(gridKey, []);
@@ -133,8 +133,8 @@ export class CoverageCalculator {
       const [lng, lat] = point.geometry.coordinates;
       const isNearby = segment.some(p => 
         this.haversineDistance(
-          parseFloat(lat),
-          parseFloat(lng),
+          lat,
+          lng,
           p.lat(),
           p.lng()
         ) <= searchRadius

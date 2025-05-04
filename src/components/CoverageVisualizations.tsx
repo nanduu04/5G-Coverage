@@ -11,7 +11,7 @@ interface CoveragePoint {
   };
   geometry: {
     type: string;
-    coordinates: [string, string];
+    coordinates: [number, number];
   };
 }
 
@@ -104,8 +104,8 @@ const CoverageVisualizations: React.FC<CoverageVisualizationsProps> = ({ data })
   // Geographic Distribution Heatmap
   const geographicDistributionChart = React.useMemo(() => {
     const points = data.features.map(point => ({
-      longitude: parseFloat(point.geometry.coordinates[0]),
-      latitude: parseFloat(point.geometry.coordinates[1])
+      longitude: point.geometry.coordinates[0],
+      latitude: point.geometry.coordinates[1]
     }));
 
     return Plot.plot({
